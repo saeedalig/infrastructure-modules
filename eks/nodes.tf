@@ -18,6 +18,7 @@ resource "aws_eks_node_group" "this" {
     min_size     = each.value.scaling_config.min_size
   }
 
+  # Max Unavailable when updating
   update_config {
     max_unavailable = 1
   }

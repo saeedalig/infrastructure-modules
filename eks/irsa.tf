@@ -1,4 +1,4 @@
-
+# Retrieve tls certificate
 data "tls_certificate" "this" {
   count = var.enable_irsa ? 1 : 0
 

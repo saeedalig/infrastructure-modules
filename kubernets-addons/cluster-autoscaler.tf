@@ -1,8 +1,10 @@
 
+# Retrieve OIDC provider
 data "aws_iam_openid_connect_provider" "this" {
   arn = var.openid_provider_arn
 }
 
+# # Helm for Cluster Autoscaler
 resource "helm_release" "cluster_autoscaler" {
   count = var.enable_cluster_autoscaler ? 1 : 0
 
@@ -13,6 +15,7 @@ resource "helm_release" "cluster_autoscaler" {
   namespace  = "kube-system"
   version    = var.cluster_autoscaler_helm_verion
 
+  # RBAC (Service Account)
   set {
     name  = "rbac.serviceAccount.name"
     value = "cluster-autoscaler"
