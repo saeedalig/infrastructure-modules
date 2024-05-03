@@ -1,3 +1,5 @@
+
+# Private Subnets 
 resource "aws_subnet" "private" {
   count = length(var.private_subnets)
 
@@ -11,6 +13,7 @@ resource "aws_subnet" "private" {
   )
 }
 
+# Public Subnets
 resource "aws_subnet" "public" {
   count = length(var.public_subnets)
 

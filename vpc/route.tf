@@ -1,3 +1,4 @@
+# Private Route Table
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.this.id
 
@@ -11,6 +12,7 @@ resource "aws_route_table" "private" {
   }
 }
 
+# Public  Route Table
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.this.id
 
@@ -24,6 +26,7 @@ resource "aws_route_table" "public" {
   }
 }
 
+# Private Route Table Association
 resource "aws_route_table_association" "private" {
   count = length(var.private_subnets)
 
@@ -31,6 +34,7 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private.id
 }
 
+# Public Route Table Association
 resource "aws_route_table_association" "public" {
   count = length(var.public_subnets)
 

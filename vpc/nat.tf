@@ -1,10 +1,13 @@
+
+# Elastic IP to keep the IP constant
 resource "aws_eip" "this" {
 
   tags = {
-    Name = "${var.env}-nat"
+    Name = "${var.env}-eip"
   }
 }
 
+# NAT Gateway for outbound connections (single: to save cost)
 resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.this.id
   subnet_id     = aws_subnet.public[0].id
